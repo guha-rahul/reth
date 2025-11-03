@@ -15,6 +15,7 @@ pub enum StageId {
     Era,
     Headers,
     Bodies,
+    SnapSync,
     SenderRecovery,
     Execution,
     PruneSenderRecovery,
@@ -40,10 +41,11 @@ static ENCODED_STAGE_IDS: OnceLock<HashMap<StageId, Vec<u8>>> = OnceLock::new();
 
 impl StageId {
     /// All supported Stages
-    pub const ALL: [Self; 16] = [
+    pub const ALL: [Self; 17] = [
         Self::Era,
         Self::Headers,
         Self::Bodies,
+        Self::SnapSync,
         Self::SenderRecovery,
         Self::Execution,
         Self::PruneSenderRecovery,
@@ -80,6 +82,7 @@ impl StageId {
             Self::Era => "Era",
             Self::Headers => "Headers",
             Self::Bodies => "Bodies",
+            Self::SnapSync => "SnapSync",
             Self::SenderRecovery => "SenderRecovery",
             Self::Execution => "Execution",
             Self::PruneSenderRecovery => "PruneSenderRecovery",
@@ -97,9 +100,9 @@ impl StageId {
         }
     }
 
-    /// Returns true if it's a downloading stage [`StageId::Headers`] or [`StageId::Bodies`]
+    /// Returns true if it's a downloading stage [`StageId::Headers`], [`StageId::Bodies`], or [`StageId::SnapSync`]
     pub const fn is_downloading_stage(&self) -> bool {
-        matches!(self, Self::Era | Self::Headers | Self::Bodies)
+        matches!(self, Self::Era | Self::Headers | Self::Bodies | Self::SnapSync)
     }
 
     /// Returns `true` if it's [`TransactionLookup`](StageId::TransactionLookup) stage.
@@ -147,6 +150,7 @@ mod tests {
         assert_eq!(StageId::Era.to_string(), "Era");
         assert_eq!(StageId::Headers.to_string(), "Headers");
         assert_eq!(StageId::Bodies.to_string(), "Bodies");
+        assert_eq!(StageId::SnapSync.to_string(), "SnapSync");
         assert_eq!(StageId::SenderRecovery.to_string(), "SenderRecovery");
         assert_eq!(StageId::Execution.to_string(), "Execution");
         assert_eq!(StageId::MerkleUnwind.to_string(), "MerkleUnwind");
@@ -166,6 +170,7 @@ mod tests {
         assert!(StageId::Headers.is_downloading_stage());
         assert!(StageId::Bodies.is_downloading_stage());
         assert!(StageId::Era.is_downloading_stage());
+        assert!(StageId::SnapSync.is_downloading_stage());
 
         assert!(!StageId::Execution.is_downloading_stage());
     }
