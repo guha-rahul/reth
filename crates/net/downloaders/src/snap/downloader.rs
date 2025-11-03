@@ -102,7 +102,7 @@ pub struct SnapDownloader<Client: SnapClient> {
     /// Next account hash to download from
     next_account_hash: B256,
 
-    /// Target account hash (usually 0xff..ff)
+    /// Target account hash 
     target_account_hash: B256,
 
     /// In-flight account range requests

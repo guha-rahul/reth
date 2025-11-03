@@ -21,6 +21,8 @@ mod merkle_changesets;
 mod prune;
 /// The sender recovery stage.
 mod sender_recovery;
+/// The snap sync stage.
+mod snap_sync;
 /// The transaction lookup stage
 mod tx_lookup;
 
@@ -37,6 +39,7 @@ pub use merkle::*;
 pub use merkle_changesets::*;
 pub use prune::*;
 pub use sender_recovery::*;
+pub use snap_sync::*;
 pub use tx_lookup::*;
 
 mod era;

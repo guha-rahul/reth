@@ -19,6 +19,8 @@ reth-config.workspace = true
 reth-consensus.workspace = true
 reth-db.workspace = true
 reth-db-api.workspace = true
+reth-downloaders.workspace = true
+reth-eth-wire-types.workspace = true
 reth-etl.workspace = true
 reth-evm = { workspace = true, features = ["metrics"] }
 reth-era-downloader.workspace = true
@@ -38,6 +40,7 @@ reth-revm.workspace = true
 reth-stages-api.workspace = true
 reth-static-file-types.workspace = true
 reth-trie = { workspace = true, features = ["metrics"] }
+reth-trie-common.workspace = true
 reth-trie-db = { workspace = true, features = ["metrics"] }
 
 reth-testing-utils = { workspace = true, optional = true }
@@ -45,6 +48,7 @@ reth-testing-utils = { workspace = true, optional = true }
 alloy-eips.workspace = true
 alloy-primitives.workspace = true
 alloy-consensus.workspace = true
+alloy-rlp.workspace = true
 
 # async
 tokio = { workspace = true, features = ["sync"] }
